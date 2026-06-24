@@ -1,0 +1,951 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The AI Adventure — History of Artificial Intelligence</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Nunito:wght@400;600;700;800&display=swap');
+
+:root {
+  --bg: #0a0a1a;
+  --card: #111128;
+  --s1: #00f5d4;
+  --s2: #f72585;
+  --s3: #7209b7;
+  --s4: #ffd60a;
+  --s5: #06d6a0;
+  --text: #e8e8f0;
+  --muted: #8888aa;
+}
+
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--text);font-family:'Nunito',sans-serif;overflow-x:hidden;}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;backdrop-filter:blur(20px);background:rgba(10,10,26,0.85);border-bottom:1px solid rgba(0,245,212,0.2);padding:12px 24px;display:flex;align-items:center;justify-content:space-between;}
+.nav-logo{font-family:'Orbitron',monospace;font-size:1rem;color:var(--s1);letter-spacing:2px;}
+.nav-links{display:flex;gap:8px;}
+.nav-btn{padding:6px 14px;border-radius:20px;border:none;cursor:pointer;font-family:'Nunito',sans-serif;font-size:0.8rem;font-weight:700;transition:all 0.3s;}
+.nav-btn.s1{background:var(--s1);color:#000;}
+.nav-btn.s2{background:transparent;border:2px solid var(--s2);color:var(--s2);}
+.nav-btn:hover{transform:scale(1.05);}
+
+/* HERO */
+#hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;position:relative;overflow:hidden;padding-top:70px;}
+.stars{position:absolute;inset:0;background:radial-gradient(ellipse at 20% 50%, rgba(114,9,183,0.15) 0%, transparent 60%),radial-gradient(ellipse at 80% 20%, rgba(0,245,212,0.1) 0%, transparent 50%),radial-gradient(ellipse at 50% 80%, rgba(247,37,133,0.1) 0%, transparent 50%);}
+.floating-emojis{position:absolute;inset:0;pointer-events:none;}
+.fe{position:absolute;font-size:2rem;animation:floatUp 6s infinite linear;opacity:0;}
+@keyframes floatUp{0%{transform:translateY(100vh) rotate(0deg);opacity:0;}10%{opacity:1;}90%{opacity:1;}100%{transform:translateY(-100px) rotate(360deg);opacity:0;}}
+.hero-tag{font-family:'Orbitron',monospace;font-size:0.75rem;letter-spacing:4px;color:var(--s1);margin-bottom:16px;text-transform:uppercase;}
+h1.hero-title{font-family:'Orbitron',monospace;font-size:clamp(2rem,6vw,4rem);text-align:center;line-height:1.1;margin-bottom:16px;}
+h1.hero-title span{background:linear-gradient(135deg,var(--s1),var(--s2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.hero-sub{font-size:1.1rem;color:var(--muted);text-align:center;max-width:600px;margin-bottom:40px;line-height:1.7;}
+.hero-btns{display:flex;gap:16px;flex-wrap:wrap;justify-content:center;}
+.btn{padding:14px 32px;border-radius:50px;font-size:1rem;font-weight:800;font-family:'Nunito',sans-serif;cursor:pointer;border:none;transition:all 0.3s;text-decoration:none;display:inline-block;}
+.btn-primary{background:linear-gradient(135deg,var(--s1),#00b4d8);color:#000;}
+.btn-secondary{background:transparent;border:2px solid var(--s2);color:var(--s2);}
+.btn:hover{transform:translateY(-3px);box-shadow:0 10px 30px rgba(0,245,212,0.3);}
+.scroll-hint{position:absolute;bottom:24px;left:50%;transform:translateX(-50%);text-align:center;color:var(--muted);font-size:0.85rem;animation:bounce 2s infinite;}
+@keyframes bounce{0%,100%{transform:translateX(-50%) translateY(0);}50%{transform:translateX(-50%) translateY(-10px);}}
+
+/* SESSION TABS */
+.session-selector{text-align:center;padding:60px 24px 0;position:relative;}
+.session-selector h2{font-family:'Orbitron',monospace;font-size:1.5rem;margin-bottom:24px;color:var(--s4);}
+.tabs{display:flex;justify-content:center;gap:16px;margin-bottom:0;}
+.tab{padding:12px 32px;border-radius:50px;font-size:1rem;font-weight:800;cursor:pointer;border:2px solid transparent;transition:all 0.3s;font-family:'Nunito',sans-serif;}
+.tab.active.t1{background:linear-gradient(135deg,var(--s1),#00b4d8);color:#000;border-color:transparent;}
+.tab.active.t2{background:linear-gradient(135deg,var(--s2),var(--s3));color:#fff;border-color:transparent;}
+.tab.inactive{background:transparent;border-color:var(--muted);color:var(--muted);}
+.tab:hover{transform:scale(1.05);}
+
+/* SESSIONS */
+.session{display:none;padding:40px 0;}
+.session.active{display:block;}
+
+/* SECTION WRAPPER */
+.section{padding:60px 24px;max-width:1100px;margin:0 auto;}
+.section-badge{display:inline-block;padding:4px 16px;border-radius:20px;font-size:0.75rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;margin-bottom:12px;}
+.badge-cyan{background:rgba(0,245,212,0.15);color:var(--s1);border:1px solid var(--s1);}
+.badge-pink{background:rgba(247,37,133,0.15);color:var(--s2);border:1px solid var(--s2);}
+.badge-purple{background:rgba(114,9,183,0.15);color:#b85dff;border:1px solid #b85dff;}
+.badge-yellow{background:rgba(255,214,10,0.15);color:var(--s4);border:1px solid var(--s4);}
+.badge-green{background:rgba(6,214,160,0.15);color:var(--s5);border:1px solid var(--s5);}
+.section h2{font-family:'Orbitron',monospace;font-size:clamp(1.3rem,3vw,2rem);margin-bottom:12px;line-height:1.3;}
+.section p{color:#c8c8dd;line-height:1.8;font-size:1rem;margin-bottom:16px;}
+
+/* TIMELINE */
+.timeline{position:relative;padding-left:0;}
+.timeline::before{content:'';position:absolute;left:20px;top:0;bottom:0;width:3px;background:linear-gradient(to bottom,var(--s1),var(--s2),var(--s3));border-radius:3px;}
+.tl-item{position:relative;padding-left:60px;margin-bottom:40px;cursor:pointer;}
+.tl-dot{position:absolute;left:8px;top:8px;width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:0.75rem;font-weight:700;color:#000;flex-shrink:0;transition:transform 0.3s;}
+.tl-item:hover .tl-dot{transform:scale(1.3);}
+.tl-card{background:var(--card);border-radius:16px;padding:20px 24px;border:1px solid rgba(255,255,255,0.06);transition:all 0.3s;position:relative;overflow:hidden;}
+.tl-card::before{content:'';position:absolute;inset:0;opacity:0;transition:opacity 0.3s;}
+.tl-item:hover .tl-card{transform:translateX(8px);border-color:rgba(0,245,212,0.3);}
+.tl-year{font-family:'Orbitron',monospace;font-size:0.8rem;color:var(--s1);margin-bottom:4px;}
+.tl-card h3{font-size:1.1rem;font-weight:800;margin-bottom:8px;}
+.tl-card p{color:var(--muted);font-size:0.9rem;line-height:1.6;margin:0;}
+.tl-emoji{font-size:1.5rem;margin-right:8px;}
+
+/* PERSON CARDS */
+.person-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:20px;margin-top:24px;}
+.person-card{background:var(--card);border-radius:20px;padding:24px;border:1px solid rgba(255,255,255,0.06);text-align:center;transition:all 0.3s;cursor:pointer;}
+.person-card:hover{transform:translateY(-8px);border-color:var(--s1);box-shadow:0 20px 40px rgba(0,245,212,0.1);}
+.person-avatar{width:80px;height:80px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:2.5rem;margin:0 auto 16px;border:3px solid;}
+.p-cyan{border-color:var(--s1);background:rgba(0,245,212,0.1);}
+.p-pink{border-color:var(--s2);background:rgba(247,37,133,0.1);}
+.p-purple{border-color:#b85dff;background:rgba(114,9,183,0.1);}
+.p-yellow{border-color:var(--s4);background:rgba(255,214,10,0.1);}
+.person-card h3{font-size:1rem;font-weight:800;margin-bottom:4px;}
+.person-card .years{font-size:0.75rem;color:var(--muted);margin-bottom:8px;font-family:'Orbitron',monospace;}
+.person-card p{font-size:0.85rem;color:var(--muted);line-height:1.6;}
+.person-card .role-badge{display:inline-block;padding:3px 12px;border-radius:20px;font-size:0.7rem;font-weight:700;margin-bottom:12px;}
+
+/* FACT BOXES */
+.fact-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin-top:24px;}
+.fact-box{border-radius:16px;padding:24px;position:relative;overflow:hidden;transition:transform 0.3s;}
+.fact-box:hover{transform:scale(1.02);}
+.fb-cyan{background:linear-gradient(135deg,rgba(0,245,212,0.1),rgba(0,180,216,0.05));border:1px solid rgba(0,245,212,0.2);}
+.fb-pink{background:linear-gradient(135deg,rgba(247,37,133,0.1),rgba(114,9,183,0.05));border:1px solid rgba(247,37,133,0.2);}
+.fb-yellow{background:linear-gradient(135deg,rgba(255,214,10,0.1),rgba(255,140,0,0.05));border:1px solid rgba(255,214,10,0.2);}
+.fb-green{background:linear-gradient(135deg,rgba(6,214,160,0.1),rgba(0,200,100,0.05));border:1px solid rgba(6,214,160,0.2);}
+.fact-box .fact-icon{font-size:2rem;margin-bottom:12px;}
+.fact-box h3{font-size:0.9rem;font-weight:800;color:var(--text);margin-bottom:6px;text-transform:uppercase;letter-spacing:1px;}
+.fact-box p{font-size:0.85rem;color:var(--muted);line-height:1.6;}
+
+/* MILESTONE CARDS */
+.milestone-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px;margin-top:24px;}
+.milestone-card{background:var(--card);border-radius:20px;overflow:hidden;border:1px solid rgba(255,255,255,0.06);transition:all 0.3s;}
+.milestone-card:hover{transform:translateY(-6px);box-shadow:0 20px 40px rgba(0,0,0,0.3);}
+.mc-header{padding:20px 24px;display:flex;align-items:center;gap:12px;}
+.mc-icon{width:50px;height:50px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.5rem;flex-shrink:0;}
+.mc-body{padding:0 24px 24px;}
+.mc-body p{font-size:0.9rem;color:var(--muted);line-height:1.6;}
+.mc-tag{font-size:0.7rem;font-weight:700;padding:3px 10px;border-radius:10px;display:inline-block;margin-top:10px;}
+
+/* QUIZ */
+.quiz-box{background:var(--card);border-radius:24px;padding:32px;border:2px solid rgba(0,245,212,0.2);margin-top:24px;position:relative;overflow:hidden;}
+.quiz-box::before{content:'🎮';position:absolute;top:-10px;right:20px;font-size:4rem;opacity:0.1;}
+.quiz-q{font-size:1.1rem;font-weight:700;margin-bottom:20px;line-height:1.6;}
+.quiz-options{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.quiz-opt{padding:14px 18px;border-radius:12px;border:2px solid rgba(255,255,255,0.1);background:rgba(255,255,255,0.03);cursor:pointer;font-family:'Nunito',sans-serif;font-size:0.9rem;font-weight:600;color:var(--text);text-align:left;transition:all 0.3s;}
+.quiz-opt:hover{border-color:var(--s1);background:rgba(0,245,212,0.05);}
+.quiz-opt.correct{border-color:var(--s5);background:rgba(6,214,160,0.15);color:var(--s5);}
+.quiz-opt.wrong{border-color:var(--s2);background:rgba(247,37,133,0.1);color:var(--s2);}
+.quiz-result{margin-top:16px;padding:16px;border-radius:12px;font-weight:700;text-align:center;display:none;}
+.quiz-result.show{display:block;}
+.result-win{background:rgba(6,214,160,0.15);color:var(--s5);}
+.result-lose{background:rgba(247,37,133,0.1);color:var(--s2);}
+.quiz-nav{display:flex;gap:12px;margin-top:16px;flex-wrap:wrap;}
+.quiz-score{font-family:'Orbitron',monospace;font-size:0.8rem;color:var(--s4);}
+
+/* FINAL CHALLENGE */
+.challenge-box{background:linear-gradient(135deg,rgba(114,9,183,0.2),rgba(247,37,133,0.1));border:2px solid rgba(247,37,133,0.3);border-radius:24px;padding:40px;text-align:center;margin-top:40px;position:relative;overflow:hidden;}
+.challenge-box::after{content:'🏆';position:absolute;right:-10px;bottom:-10px;font-size:8rem;opacity:0.08;}
+.challenge-box h2{font-family:'Orbitron',monospace;font-size:1.4rem;color:var(--s2);margin-bottom:16px;}
+.challenge-box .challenge-q{font-size:1.1rem;color:var(--text);line-height:1.7;margin-bottom:20px;font-weight:600;}
+.challenge-hint{font-size:0.85rem;color:var(--muted);font-style:italic;}
+
+/* THINK BUBBLE */
+.think-bubble{background:rgba(255,214,10,0.08);border:1px dashed rgba(255,214,10,0.4);border-radius:16px;padding:20px 24px;margin:20px 0;}
+.think-bubble .tb-label{font-size:0.75rem;font-weight:700;color:var(--s4);letter-spacing:2px;text-transform:uppercase;margin-bottom:8px;}
+.think-bubble p{color:var(--text);font-size:0.95rem;line-height:1.7;}
+
+/* DIVIDER */
+.wave-div{width:100%;overflow:hidden;line-height:0;margin:20px 0;}
+
+/* HIGHLIGHT TEXT */
+.hl-cyan{color:var(--s1);font-weight:700;}
+.hl-pink{color:var(--s2);font-weight:700;}
+.hl-yellow{color:var(--s4);font-weight:700;}
+.hl-green{color:var(--s5);font-weight:700;}
+
+/* FUN STAT STRIP */
+.stat-strip{display:flex;gap:0;overflow-x:auto;margin:24px 0;border-radius:16px;overflow:hidden;border:1px solid rgba(255,255,255,0.06);}
+.stat-item{flex:1;min-width:140px;padding:20px;text-align:center;border-right:1px solid rgba(255,255,255,0.06);}
+.stat-item:last-child{border-right:none;}
+.stat-num{font-family:'Orbitron',monospace;font-size:1.4rem;font-weight:700;margin-bottom:4px;}
+.stat-label{font-size:0.75rem;color:var(--muted);font-weight:600;}
+
+/* ROBOT VISUAL */
+.robot-visual{text-align:center;padding:40px;font-size:5rem;animation:robotBob 2s ease-in-out infinite;}
+@keyframes robotBob{0%,100%{transform:translateY(0);}50%{transform:translateY(-15px);}
+}
+
+/* SCROLL REVEAL */
+.reveal{opacity:0;transform:translateY(40px);transition:all 0.7s ease;}
+.reveal.visible{opacity:1;transform:translateY(0);}
+
+/* PROGRESS BAR */
+.progress-bar{position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,var(--s1),var(--s2));z-index:200;transition:width 0.1s;}
+
+/* RESPONSIVE */
+@media(max-width:600px){
+  .quiz-options{grid-template-columns:1fr;}
+  .tabs{flex-direction:column;align-items:center;}
+  .stat-strip{flex-wrap:wrap;}
+  .timeline::before{display:none;}
+  .tl-item{padding-left:0;}
+  .tl-dot{display:none;}
+}
+</style>
+</head>
+<body>
+
+<div class="progress-bar" id="progressBar"></div>
+
+<nav>
+  <div class="nav-logo">⚡ AI ADVENTURE</div>
+  <div class="nav-links">
+    <button class="nav-btn s1" onclick="switchSession(1)">Session 1</button>
+    <button class="nav-btn s2" onclick="switchSession(2)">Session 2</button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="stars"></div>
+  <div class="floating-emojis" id="floatingEmojis"></div>
+  <div style="position:relative;z-index:1;text-align:center;padding:0 24px;">
+    <div class="hero-tag">Class 6 — 10 • Interactive Learning</div>
+    <h1 class="hero-title">The <span>AI Adventure</span><br>How Machines Learned to Think</h1>
+    <p class="hero-sub">From a scientist's wild dream in 1950 to robots doing surgery in 2024 — buckle up for the most mind-blowing story ever told! 🚀</p>
+    <div class="hero-btns">
+      <a class="btn btn-primary" onclick="switchSession(1);document.getElementById('session1').scrollIntoView({behavior:'smooth'})">Start Session 1 🎯</a>
+      <a class="btn btn-secondary" onclick="switchSession(2);document.getElementById('session2').scrollIntoView({behavior:'smooth'})">Jump to Session 2 ⚡</a>
+    </div>
+  </div>
+  <div class="scroll-hint">▼ Scroll to explore</div>
+</section>
+
+<!-- SESSION SELECTOR -->
+<div class="session-selector">
+  <h2>Choose Your Adventure</h2>
+  <div class="tabs">
+    <button class="tab t1 active" id="tab1" onclick="switchSession(1)">🌱 Session 1: Birth of AI (1950–2000)</button>
+    <button class="tab t2 inactive" id="tab2" onclick="switchSession(2)">🚀 Session 2: AI Takes Over (2000–Now)</button>
+  </div>
+</div>
+
+<!-- ═══════════════════ SESSION 1 ═══════════════════ -->
+<div class="session active" id="session1">
+
+  <!-- INTRO -->
+  <div class="section reveal">
+    <div class="section-badge badge-cyan">Session 1 of 2</div>
+    <h2>🌱 The Birth of AI — How It All Started</h2>
+    <p>Imagine it's 1950. There are no smartphones, no internet, no video games. Computers are the size of a room and can barely add numbers. And then — one genius asks a question that would change the world forever...</p>
+
+    <div class="think-bubble">
+      <div class="tb-label">💭 The BIG Question of 1950</div>
+      <p><strong>"CAN MACHINES THINK?"</strong> — Alan Turing, a British mathematician, asked this and the whole world went crazy. This one question started the entire field of Artificial Intelligence!</p>
+    </div>
+
+    <div class="stat-strip">
+      <div class="stat-item">
+        <div class="stat-num" style="color:var(--s1)">74</div>
+        <div class="stat-label">Years of AI History</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num" style="color:var(--s2)">1950</div>
+        <div class="stat-label">When it began</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num" style="color:var(--s4)">100+</div>
+        <div class="stat-label">AI Breakthroughs</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num" style="color:var(--s5)">∞</div>
+        <div class="stat-label">Future Possibilities</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FATHER OF AI -->
+  <div class="section reveal">
+    <div class="section-badge badge-pink">👑 The Legends</div>
+    <h2>Meet the Founders of AI — Real Life Superheroes!</h2>
+    <p>These brilliant minds didn't just study AI — they <span class="hl-cyan">INVENTED</span> it from scratch. No textbook, no YouTube tutorial, no ChatGPT to help them! 😮</p>
+    <div class="person-grid">
+      <div class="person-card">
+        <div class="person-avatar p-cyan">🧠</div>
+        <div class="role-badge" style="background:rgba(0,245,212,0.15);color:var(--s1);">Father of AI</div>
+        <h3>Alan Turing</h3>
+        <div class="years">1912 — 1954</div>
+        <p>British genius who asked "Can machines think?" in 1950. He invented the Turing Test — a test to check if a machine is as smart as a human. During WW2, he built a machine that cracked enemy secret codes and saved millions of lives! 🇬🇧</p>
+      </div>
+      <div class="person-card">
+        <div class="person-avatar p-pink">🔬</div>
+        <div class="role-badge" style="background:rgba(247,37,133,0.15);color:var(--s2);">Coined "AI"</div>
+        <h3>John McCarthy</h3>
+        <div class="years">1927 — 2011</div>
+        <p>American scientist who first used the words "Artificial Intelligence" in 1956! He organised the first ever AI conference at Dartmouth College. Without him, we wouldn't even have the NAME for AI! 🇺🇸</p>
+      </div>
+      <div class="person-card">
+        <div class="person-avatar p-purple">🤖</div>
+        <div class="role-badge" style="background:rgba(114,9,183,0.15);color:#b85dff;">AI Pioneer</div>
+        <h3>Marvin Minsky</h3>
+        <div class="years">1927 — 2016</div>
+        <p>Co-founder of MIT's AI lab. He built the first neural network machine and believed computers could one day think like humans. He said: "Will robots inherit the earth? Yes — but they will be our children!" 🧬</p>
+      </div>
+      <div class="person-card">
+        <div class="person-avatar p-yellow">💡</div>
+        <div class="role-badge" style="background:rgba(255,214,10,0.15);color:var(--s4);">Modern AI Father</div>
+        <h3>Geoffrey Hinton</h3>
+        <div class="years">1947 — Present</div>
+        <p>Called the "Godfather of Deep Learning" — the technology that powers today's ChatGPT and image recognition. Won the Nobel Prize in 2024! He taught computers to learn by looking at examples, just like we do! 🏆</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- WHAT IS AI -->
+  <div class="section reveal">
+    <div class="section-badge badge-yellow">🤔 What IS AI?</div>
+    <h2>AI Explained — Super Simply!</h2>
+    <p>You know how <span class="hl-yellow">you</span> learn things? You see a dog once, twice, a hundred times — and eventually your brain goes <em>"I know what a dog looks like!"</em> AI does the SAME thing — but with code!</p>
+
+    <div class="fact-grid">
+      <div class="fact-box fb-cyan">
+        <div class="fact-icon">🧒</div>
+        <h3>How YOU Learn</h3>
+        <p>You see examples → your brain notices patterns → you understand the world. This is called learning from experience!</p>
+      </div>
+      <div class="fact-box fb-pink">
+        <div class="fact-icon">💻</div>
+        <h3>How AI Learns</h3>
+        <p>AI sees millions of examples → software finds patterns → it understands! Same idea — different machine!</p>
+      </div>
+      <div class="fact-box fb-yellow">
+        <div class="fact-icon">🎯</div>
+        <h3>What AI Can Do</h3>
+        <p>Recognise faces, speak your language, play games, drive cars, detect diseases, compose music — and MUCH more!</p>
+      </div>
+      <div class="fact-box fb-green">
+        <div class="fact-icon">⚡</div>
+        <h3>What AI Can't Do</h3>
+        <p>Feel emotions, be truly creative from nothing, understand jokes perfectly... yet! (But it's getting closer every day!)</p>
+      </div>
+    </div>
+
+    <div class="think-bubble" style="margin-top:24px;">
+      <div class="tb-label">🤯 Mind = Blown</div>
+      <p>A modern AI like ChatGPT has read more books, articles, and websites than <strong>every human who ever lived — combined!</strong> It read the entire internet! And it did it in a few months. You'd need 500,000 lifetimes to do the same. 🤯</p>
+    </div>
+  </div>
+
+  <!-- TIMELINE S1 -->
+  <div class="section reveal">
+    <div class="section-badge badge-purple">📅 The Timeline</div>
+    <h2>From Dream to Reality — The Journey of AI (1950–2000)</h2>
+    <p>Every big thing starts small. AI's story is like a superhero's origin story — full of ups, downs, failures, and comeback moments! 🦸</p>
+
+    <div class="timeline" style="margin-top:32px;">
+      <div class="tl-item">
+        <div class="tl-dot" style="background:var(--s1)">50</div>
+        <div class="tl-card">
+          <div class="tl-year">1950</div>
+          <h3><span class="tl-emoji">🧪</span>The Turing Test is Born</h3>
+          <p>Alan Turing publishes "Computing Machinery and Intelligence" — asking if machines can think. He proposes the "Imitation Game" — a test where a human chats with both a machine and a human, and can't tell the difference. If the machine fools the human — it's intelligent! This is called the Turing Test and it's still used today.</p>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot" style="background:var(--s2)">56</div>
+        <div class="tl-card">
+          <div class="tl-year">1956</div>
+          <h3><span class="tl-emoji">🎓</span>The Dartmouth Conference — AI is BORN!</h3>
+          <p>John McCarthy gathers the world's smartest scientists in a small college in America. They meet for 8 weeks and officially give birth to the field of "Artificial Intelligence." This is AI's birthday! 🎂 They believed they could create a fully intelligent machine in ONE summer. Spoiler: it took 70 more years!</p>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot" style="background:#b85dff">65</div>
+        <div class="tl-card">
+          <div class="tl-year">1965</div>
+          <h3><span class="tl-emoji">🗣️</span>ELIZA — The First Chatbot!</h3>
+          <p>MIT creates ELIZA — a program that could have basic conversations. It was designed to act like a psychologist! People would type their problems, and ELIZA would reply. Some people actually thought it was a real human! Sound familiar? Think of Siri, Alexa, or ChatGPT — ELIZA was their great-great-grandmother! 👵</p>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot" style="background:var(--s4)">73</div>
+        <div class="tl-card">
+          <div class="tl-year">1973</div>
+          <h3><span class="tl-emoji">❄️</span>The AI Winter — Everyone Gives Up</h3>
+          <p>Governments stop giving money to AI research. Scientists can't deliver on their big promises. People call AI a failure and a joke. This dark period is called the "AI Winter" — like a long cold night with no progress. But the best scientists kept working in secret! 🌙 Remember: even the coldest winter ends in spring.</p>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot" style="background:var(--s5)">86</div>
+        <div class="tl-card">
+          <div class="tl-year">1986</div>
+          <h3><span class="tl-emoji">🌊</span>Neural Networks are Rediscovered!</h3>
+          <p>Geoffrey Hinton and team discover how to train deep neural networks — computer systems inspired by the human brain! Instead of programming rules, the AI learns from examples. This is like teaching a child to ride a bicycle — you don't explain physics, you just let them practice! This was the BIG breakthrough that eventually led to ChatGPT. 🏄</p>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot" style="background:var(--s1)">97</div>
+        <div class="tl-card">
+          <div class="tl-year">1997</div>
+          <h3><span class="tl-emoji">♟️</span>Deep Blue Beats the World Chess Champion!</h3>
+          <p>IBM's AI "Deep Blue" defeats Garry Kasparov — the best chess player on Earth — in a historic match! The whole world watches in shock. A machine just outsmarted the smartest human chess player! Kasparov was so upset he accused IBM of cheating! 😤 This was the moment AI proved it could beat humans at complex thinking games. Chess was never the same again!</p>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot" style="background:var(--s2)">98</div>
+        <div class="tl-card">
+          <div class="tl-year">1998</div>
+          <h3><span class="tl-emoji">🔍</span>Google is Born — AI Finds Everything!</h3>
+          <p>Two Stanford students — Larry Page and Sergey Brin — create Google. Their search engine uses AI to understand what you're looking for and find the best answer from billions of web pages — in under 1 second! Before Google, finding information online was like looking for one book in a library with no shelves, no labels, and no librarian! 📚</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- AI IN EARLY COMPUTERS -->
+  <div class="section reveal">
+    <div class="section-badge badge-green">💾 Early Use</div>
+    <h2>How AI First Came Into Our Computers</h2>
+    <p>The first uses of AI weren't robots or chatbots — they were much more practical and important! Here's how AI quietly entered our everyday world long before most people noticed:</p>
+
+    <div class="milestone-grid">
+      <div class="milestone-card">
+        <div class="mc-header">
+          <div class="mc-icon" style="background:rgba(0,245,212,0.15);">✉️</div>
+          <div>
+            <h3 style="font-size:1rem;font-weight:800;">Email Spam Filter</h3>
+            <div style="font-size:0.75rem;color:var(--muted);">1990s</div>
+          </div>
+        </div>
+        <div class="mc-body">
+          <p>AI learned to spot fake emails (spam) and move them to junk. Before this, your inbox was 90% ads for "free money!" 📩 This was one of the first times AI saved millions of people time every day.</p>
+          <span class="mc-tag" style="background:rgba(0,245,212,0.15);color:var(--s1);">Still used today</span>
+        </div>
+      </div>
+
+      <div class="milestone-card">
+        <div class="mc-header">
+          <div class="mc-icon" style="background:rgba(247,37,133,0.15);">💳</div>
+          <div>
+            <h3 style="font-size:1rem;font-weight:800;">Bank Fraud Detection</h3>
+            <div style="font-size:0.75rem;color:var(--muted);">1987</div>
+          </div>
+        </div>
+        <div class="mc-body">
+          <p>AI monitors every credit card transaction on Earth — billions per day — and flags suspicious ones in milliseconds. If someone uses your card in Mumbai and then Tokyo 2 minutes later — AI catches it! 🚨</p>
+          <span class="mc-tag" style="background:rgba(247,37,133,0.15);color:var(--s2);">Protects you daily</span>
+        </div>
+      </div>
+
+      <div class="milestone-card">
+        <div class="mc-header">
+          <div class="mc-icon" style="background:rgba(114,9,183,0.15);">🎮</div>
+          <div>
+            <h3 style="font-size:1rem;font-weight:800;">Video Game AI</h3>
+            <div style="font-size:0.75rem;color:var(--muted);">1980s</div>
+          </div>
+        </div>
+        <div class="mc-body">
+          <p>The enemies in video games like Pacman and Space Invaders used early AI! They had simple rules but could respond to your moves. Today, game AI creates entire worlds, stories, and characters that feel completely real. 🕹️</p>
+          <span class="mc-tag" style="background:rgba(114,9,183,0.15);color:#b85dff;">Fun AI!</span>
+        </div>
+      </div>
+
+      <div class="milestone-card">
+        <div class="mc-header">
+          <div class="mc-icon" style="background:rgba(255,214,10,0.15);">🏥</div>
+          <div>
+            <h3 style="font-size:1rem;font-weight:800;">Medical Diagnosis Help</h3>
+            <div style="font-size:0.75rem;color:var(--muted);">1970s</div>
+          </div>
+        </div>
+        <div class="mc-body">
+          <p>MYCIN — created at Stanford — could diagnose blood infections and recommend antibiotics. It was tested and was MORE accurate than many doctors! But hospitals were afraid to trust computers with lives in the 1970s. 🔬</p>
+          <span class="mc-tag" style="background:rgba(255,214,10,0.15);color:var(--s4);">Life-saving pioneer</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- QUIZ S1 -->
+  <div class="section reveal">
+    <div class="section-badge badge-cyan">🎮 Quiz Time!</div>
+    <h2>Let's Test What You Learned!</h2>
+    <p>Answer these questions — no cheating, no Google! Your brain power only! 💪</p>
+
+    <div id="quiz1" style="margin-top:16px;">
+      <div id="q1-box" class="quiz-box">
+        <div class="quiz-score" id="score1">Score: 0/5 ⭐</div>
+        <div class="quiz-q" id="q1-text">Loading question...</div>
+        <div class="quiz-options" id="q1-opts"></div>
+        <div class="quiz-result" id="q1-result"></div>
+        <div class="quiz-nav">
+          <button class="btn btn-primary" onclick="nextQ1()" style="padding:10px 24px;font-size:0.9rem;" id="nextBtn1">Next Question →</button>
+          <span style="align-self:center;color:var(--muted);font-size:0.85rem;" id="q1-count">Question 1 of 5</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SESSION 1 FINAL CHALLENGE -->
+  <div class="section reveal">
+    <div class="challenge-box">
+      <h2>🏆 YOUR HOMEWORK CHALLENGE!</h2>
+      <p style="color:var(--muted);margin-bottom:16px;font-size:0.9rem;">Think about this before Session 2. There's no single right answer — your answer will be different from your classmate's!</p>
+      <div class="challenge-q">
+        "If you could build an AI that helps one specific person in your family, or one problem in your village or city — what would that AI do? What would it be able to see, hear, or understand? And what problem would it solve?"
+      </div>
+      <p class="challenge-hint">💡 Hint: Think about your parents' work, problems in your area, things that take a lot of time... the more specific and personal your answer, the more interesting it is! Bonus points if it sounds completely crazy but still makes sense! 🤪</p>
+    </div>
+  </div>
+
+</div>
+<!-- END SESSION 1 -->
+
+
+<!-- ═══════════════════ SESSION 2 ═══════════════════ -->
+<div class="session" id="session2">
+
+  <!-- INTRO S2 -->
+  <div class="section reveal">
+    <div class="section-badge badge-pink">Session 2 of 2</div>
+    <h2>🚀 AI Takes Over — The 21st Century Revolution!</h2>
+    <p>Welcome to Session 2! Whether you attended Session 1 or not — you're going to have a blast here! We're jumping straight into the wild world of <span class="hl-pink">Modern AI</span> — the AI that's literally in your pocket right now! 🤳</p>
+
+    <div class="think-bubble">
+      <div class="tb-label">⚡ Quick Context — All You Need to Know</div>
+      <p>By the year 2000, scientists had figured out the <em>basics</em> of AI. But AI was still slow, dumb, and limited. Then something changed. Three things happened at the same time: <strong>more data</strong> (the internet exploded), <strong>better computers</strong> (GPUs got powerful), and <strong>smarter algorithms</strong>. These three things together created the AI revolution we're living in RIGHT NOW. 💥</p>
+    </div>
+
+    <div class="stat-strip">
+      <div class="stat-item">
+        <div class="stat-num" style="color:var(--s2)">100M</div>
+        <div class="stat-label">ChatGPT users in 60 days</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num" style="color:var(--s1)">5,000+</div>
+        <div class="stat-label">AI startups in 2024</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num" style="color:var(--s4)">$200B</div>
+        <div class="stat-label">AI industry value</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num" style="color:var(--s5)">800M</div>
+        <div class="stat-label">Jobs AI may change</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TIMELINE S2 -->
+  <div class="section reveal">
+    <div class="section-badge badge-purple">📅 2000–2024</div>
+    <h2>The Modern AI Timeline — When Things Got CRAZY!</h2>
+    <div class="timeline" style="margin-top:32px;">
+
+      <div class="tl-item">
+        <div class="tl-dot" style="background:var(--s1)">02</div>
+        <div class="tl-card">
+          <div class="tl-year">2002</div>
+          <h3><span class="tl-emoji">🤖</span>Roomba — First Robot in Your Home!</h3>
+          <p>iRobot launches the Roomba — a robot vacuum cleaner that maps your house and cleans by itself! This was the first time a robot entered millions of normal homes. Before Roomba, robots only existed in factories and sci-fi movies. Today, over 40 million Roombas are cleaning floors worldwide! 🏠</p>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot" style="background:var(--s2)">06</div>
+        <div class="tl-card">
+          <div class="tl-year">2006</div>
+          <h3><span class="tl-emoji">📺</span>Netflix Recommends What to Watch!</h3>
+          <p>Netflix launches its AI recommendation system. It watches everything you watch, how long you watch it, when you pause — and then recommends the PERFECT next show. Today, 80% of everything watched on Netflix is because AI recommended it! That show you got addicted to last weekend? AI planned that. 😏</p>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot" style="background:#b85dff">11</div>
+        <div class="tl-card">
+          <div class="tl-year">2011</div>
+          <h3><span class="tl-emoji">🗣️</span>Siri — AI in Your Pocket!</h3>
+          <p>Apple launches Siri — the first AI assistant on a smartphone. Suddenly, you could talk to your phone and it would talk back! That same year, IBM's Watson AI beats two human champions on Jeopardy — America's hardest quiz show! The audience was speechless. A computer had just beaten the smartest quiz players in the country at GENERAL KNOWLEDGE. 🏆</p>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot" style="background:var(--s4)">12</div>
+        <div class="tl-card">
+          <div class="tl-year">2012</div>
+          <h3><span class="tl-emoji">👁️</span>AI Learns to See — The Image Revolution!</h3>
+          <p>Geoffrey Hinton's team creates AlexNet — an AI that can recognise images better than humans for the first time! It looks at a photo of a cat and says "Cat!" — not because it was programmed with cat rules, but because it saw 1 million cat pictures and figured it out. This is like a child learning to recognise animals — not from a textbook, but from experience! 📸</p>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot" style="background:var(--s5)">16</div>
+        <div class="tl-card">
+          <div class="tl-year">2016</div>
+          <h3><span class="tl-emoji">🏓</span>AlphaGo — AI Masters the Impossible Game!</h3>
+          <p>Google's AlphaGo defeats Lee Sedol — the world's greatest Go player. Go is 100x more complex than chess (more possible moves than atoms in the universe!). Experts said this would take 50 more years! Lee Sedol cried after losing. He later said one of AlphaGo's moves was "not a human move — it was a move only a god could make." 😱</p>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot" style="background:var(--s1)">18</div>
+        <div class="tl-card">
+          <div class="tl-year">2018</div>
+          <h3><span class="tl-emoji">🎨</span>AI Creates Art — and Sells It for ₹4 Crore!</h3>
+          <p>An AI-generated portrait called "Portrait of Edmond Belamy" sells at Christie's auction house for $432,500 — ₹4 crore! The art world is shocked. Was it really art? Who owns it — the AI or the programmer? These are questions people are still arguing about today! Meanwhile, AI starts writing music, poetry, and even screenplays. 🎭</p>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot" style="background:var(--s2)">20</div>
+        <div class="tl-card">
+          <div class="tl-year">2020</div>
+          <h3><span class="tl-emoji">💊</span>AI Saves Lives — COVID Vaccine in Record Time!</h3>
+          <p>AI is used to design the COVID-19 vaccine in just 2 days — what normally takes 10 years! BioNTech uses AI to map the structure of the virus and identify the best way to fight it. The actual testing still took a year for safety — but AI compressed a decade of drug design into 48 hours. AI literally helped save millions of lives! 💉</p>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot" style="background:#b85dff">22</div>
+        <div class="tl-card">
+          <div class="tl-year">2022</div>
+          <h3><span class="tl-emoji">💬</span>ChatGPT — And the World Changed Forever!</h3>
+          <p>OpenAI releases ChatGPT on November 30, 2022. Within 5 days — 1 million users. Within 2 months — 100 million users. It became the fastest growing technology product in history! Suddenly, AI wasn't just for scientists and tech companies. Your dadi could use it. Your 8-year-old cousin could use it. AI had officially arrived for everyone on Earth. 🌍</p>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot" style="background:var(--s4)">24</div>
+        <div class="tl-card">
+          <div class="tl-year">2024</div>
+          <h3><span class="tl-emoji">🏅</span>AI Wins the Nobel Prize!</h3>
+          <p>Geoffrey Hinton wins the Nobel Prize in Physics for his work on neural networks. This is like AI receiving its PhD! Meanwhile, AI is used in over 77% of the world's electronic devices. You are breathing AI. Every autocorrect, every Google search, every YouTube suggestion — AI. We are living in the AI age. RIGHT. NOW. ⚡</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- AI IN DIFFERENT SECTORS -->
+  <div class="section reveal">
+    <div class="section-badge badge-yellow">🌍 AI Everywhere</div>
+    <h2>AI in Every Corner of the World — The Milestones!</h2>
+    <p>AI isn't just in phones and computers anymore. It's in hospitals, farms, classrooms, courtrooms, football stadiums, and even inside your body! Here are the most jaw-dropping ways AI is changing the world:</p>
+
+    <div class="milestone-grid">
+      <div class="milestone-card">
+        <div class="mc-header">
+          <div class="mc-icon" style="background:rgba(247,37,133,0.15);">🏥</div>
+          <div><h3 style="font-size:0.95rem;font-weight:800;">Medical & Healthcare AI</h3></div>
+        </div>
+        <div class="mc-body">
+          <p>🔬 <strong>Da Vinci Surgical Robot</strong> performs surgeries through tiny cuts — controlled by a surgeon but with AI precision! 3 million surgeries done so far.<br><br>
+          👁️ <strong>AI detects cancer</strong> in X-rays and MRI scans with 94% accuracy — better than most doctors!<br><br>
+          💊 <strong>IBM Watson for Oncology</strong> reads every cancer research paper ever written and recommends personalised treatment.<br><br>
+          🫀 <strong>AI predicts heart attacks</strong> 5 years before they happen — by reading your eye scan!</p>
+          <span class="mc-tag" style="background:rgba(247,37,133,0.15);color:var(--s2);">🚨 Saving Lives Daily</span>
+        </div>
+      </div>
+
+      <div class="milestone-card">
+        <div class="mc-header">
+          <div class="mc-icon" style="background:rgba(0,245,212,0.15);">📚</div>
+          <div><h3 style="font-size:0.95rem;font-weight:800;">Education AI</h3></div>
+        </div>
+        <div class="mc-body">
+          <p>🎓 <strong>Khan Academy's Khanmigo</strong> — an AI tutor that teaches every subject to every student at their own pace — like having a personal teacher available 24/7!<br><br>
+          ✍️ <strong>Grammarly AI</strong> helps millions of students write better English.<br><br>
+          🌐 <strong>Duolingo AI</strong> teaches 40+ languages to 600 million people.<br><br>
+          🔍 <strong>Photomath</strong> — take a photo of a math problem, AI solves it AND explains every step!</p>
+          <span class="mc-tag" style="background:rgba(0,245,212,0.15);color:var(--s1);">📖 Changing How We Learn</span>
+        </div>
+      </div>
+
+      <div class="milestone-card">
+        <div class="mc-header">
+          <div class="mc-icon" style="background:rgba(255,214,10,0.15);">🚗</div>
+          <div><h3 style="font-size:0.95rem;font-weight:800;">Transport & Cars</h3></div>
+        </div>
+        <div class="mc-body">
+          <p>🚙 <strong>Tesla Autopilot</strong> — drives the car by itself on highways using AI cameras and radar!<br><br>
+          🚁 <strong>Drone deliveries</strong> — Amazon is delivering packages by AI drones — no driver, no road!<br><br>
+          🗺️ <strong>Google Maps AI</strong> predicts traffic jams 30 minutes before they happen!<br><br>
+          ✈️ <strong>AI co-pilot systems</strong> — most modern planes have AI that flies them for 96% of the journey. The human pilot mostly handles takeoff and landing!</p>
+          <span class="mc-tag" style="background:rgba(255,214,10,0.15);color:var(--s4);">🛣️ Self-Driving Future</span>
+        </div>
+      </div>
+
+      <div class="milestone-card">
+        <div class="mc-header">
+          <div class="mc-icon" style="background:rgba(6,214,160,0.15);">🌾</div>
+          <div><h3 style="font-size:0.95rem;font-weight:800;">Agriculture & Farming</h3></div>
+        </div>
+        <div class="mc-body">
+          <p>🌱 <strong>AI drones</strong> fly over farms and detect which plants are sick — before the farmer even notices!<br><br>
+          💧 <strong>Smart irrigation AI</strong> knows exactly when to water each plant and saves 40% water!<br><br>
+          🐄 <strong>Cow facial recognition</strong> — yes, really! AI recognises individual cows and monitors their health.<br><br>
+          🌦️ <strong>Weather prediction AI</strong> is now 30% more accurate, helping farmers plan entire seasons better.</p>
+          <span class="mc-tag" style="background:rgba(6,214,160,0.15);color:var(--s5);">🌏 Feeding the World</span>
+        </div>
+      </div>
+
+      <div class="milestone-card">
+        <div class="mc-header">
+          <div class="mc-icon" style="background:rgba(114,9,183,0.15);">💼</div>
+          <div><h3 style="font-size:0.95rem;font-weight:800;">Business & Corporate</h3></div>
+        </div>
+        <div class="mc-body">
+          <p>📊 <strong>AI writes business reports</strong> — a task that took humans a week now takes AI 10 seconds.<br><br>
+          🛒 <strong>Amazon's warehouse robots</strong> — over 750,000 robots pick, pack, and send your orders. They work 24/7 without breaks!<br><br>
+          📞 <strong>AI customer service</strong> — most company chat boxes are AI. It handles millions of complaints at once!<br><br>
+          💰 <strong>AI stock trading</strong> — 70% of Wall Street stock trades are done by AI in milliseconds.</p>
+          <span class="mc-tag" style="background:rgba(114,9,183,0.15);color:#b85dff);">⚡ Running the Economy</span>
+        </div>
+      </div>
+
+      <div class="milestone-card">
+        <div class="mc-header">
+          <div class="mc-icon" style="background:rgba(0,180,216,0.15);">🤖</div>
+          <div><h3 style="font-size:0.95rem;font-weight:800;">Humanoid Robots</h3></div>
+        </div>
+        <div class="mc-body">
+          <p>🦾 <strong>Boston Dynamics Atlas</strong> — a robot that can run, jump, do backflips, and carry heavy things. It's used in disaster zones too dangerous for humans!<br><br>
+          👩‍🔬 <strong>Sophia the Robot</strong> — first robot to get a country's citizenship (Saudi Arabia, 2017). She can make 62 facial expressions!<br><br>
+          🏭 <strong>Tesla Optimus</strong> — humanoid robot being built to work in factories alongside humans.<br><br>
+          🏥 <strong>Care-O-bot</strong> — robot nurses in German hospitals that bring water to patients!</p>
+          <span class="mc-tag" style="background:rgba(0,180,216,0.15);color:#00b4d8;">🤖 Robots Are Here!</span>
+        </div>
+      </div>
+
+      <div class="milestone-card">
+        <div class="mc-header">
+          <div class="mc-icon" style="background:rgba(255,100,0,0.15);">🎭</div>
+          <div><h3 style="font-size:0.95rem;font-weight:800;">Entertainment & Sports</h3></div>
+        </div>
+        <div class="mc-body">
+          <p>🎵 <strong>Spotify AI</strong> creates your personal Daily Mix playlist — it knows your mood better than you do!<br><br>
+          ⚽ <strong>FIFA World Cup 2022</strong> — AI cameras tracked every player's movement, speed, and heat map in real time!<br><br>
+          🎬 <strong>AI in movies</strong> — Marvel uses AI to de-age actors' faces. Disney's "The Mandalorian" has entire AI-generated backgrounds!<br><br>
+          🎮 <strong>AI game characters</strong> in games like GTA or Elden Ring — each NPC has its own AI brain!</p>
+          <span class="mc-tag" style="background:rgba(255,100,0,0.15);color:#ff6400;">🎯 AI Entertains You</span>
+        </div>
+      </div>
+
+      <div class="milestone-card">
+        <div class="mc-header">
+          <div class="mc-icon" style="background:rgba(0,255,100,0.1);">🌍</div>
+          <div><h3 style="font-size:0.95rem;font-weight:800;">Climate & Environment</h3></div>
+        </div>
+        <div class="mc-body">
+          <p>🌊 <strong>AI predicts floods and cyclones</strong> — up to 7 days in advance, giving people time to evacuate safely!<br><br>
+          🌲 <strong>AI monitors deforestation</strong> — satellites + AI track every tree cut down anywhere on Earth in real time.<br><br>
+          ☀️ <strong>AI manages solar panels</strong> — it predicts cloud movements and adjusts energy storage perfectly.<br><br>
+          🐋 <strong>AI identifies whale species</strong> from their songs — tracking endangered animals underwater!</p>
+          <span class="mc-tag" style="background:rgba(0,255,100,0.1);color:#06d6a0;">🌱 Saving the Planet</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- HOW WILL THEY USE IT -->
+  <div class="section reveal">
+    <div class="section-badge badge-cyan">🎯 YOUR Future</div>
+    <h2>How YOU Will Use AI — Your AI Superpowers! ⚡</h2>
+    <p>You are the <span class="hl-cyan">AI Generation</span>. By the time you're 25, AI will be as normal as electricity. Here's how YOU will use it to do incredible things:</p>
+
+    <div class="fact-grid">
+      <div class="fact-box fb-cyan">
+        <div class="fact-icon">🎓</div>
+        <h3>For Learning</h3>
+        <p>AI tutors that explain anything in your language, at your speed. Homework helper that doesn't just give answers — it teaches you WHY! AI that translates any book into Gujarati or Hindi instantly.</p>
+      </div>
+      <div class="fact-box fb-pink">
+        <div class="fact-icon">💡</div>
+        <h3>For Creating</h3>
+        <p>Design apps, games, websites without coding! AI writes the code, you give the ideas. Make your own music, art, animations using just voice commands. Your creativity + AI's power = unlimited possibilities!</p>
+      </div>
+      <div class="fact-box fb-yellow">
+        <div class="fact-icon">🏥</div>
+        <h3>For Health</h3>
+        <p>Your smartwatch AI monitors your heartbeat and warns you before you get sick. AI doctors available in remote villages with no hospitals. Mental health AI available 24/7 to talk and help.</p>
+      </div>
+      <div class="fact-box fb-green">
+        <div class="fact-icon">🌏</div>
+        <h3>For Society</h3>
+        <p>AI helps farmers in your village predict weather. AI translations break language barriers. AI tools help students with disabilities study just as well as anyone else. AI for everyone!</p>
+      </div>
+    </div>
+
+    <div class="think-bubble" style="margin-top:24px;">
+      <div class="tb-label">🚀 The Big Truth</div>
+      <p>AI will not replace YOU. AI will replace people who don't know how to USE AI. Just like calculators didn't replace mathematicians — they made them MORE powerful. <strong>Learning AI today is like learning to read in 1440 when the printing press was invented.</strong> The ones who learned to read — changed the world. That's YOU. 🌟</p>
+    </div>
+  </div>
+
+  <!-- QUIZ S2 -->
+  <div class="section reveal">
+    <div class="section-badge badge-pink">🎮 Quiz Time!</div>
+    <h2>Session 2 — Are You an AI Expert?</h2>
+    <div id="quiz2" style="margin-top:16px;">
+      <div class="quiz-box">
+        <div class="quiz-score" id="score2">Score: 0/5 ⭐</div>
+        <div class="quiz-q" id="q2-text">Loading...</div>
+        <div class="quiz-options" id="q2-opts"></div>
+        <div class="quiz-result" id="q2-result"></div>
+        <div class="quiz-nav">
+          <button class="btn btn-secondary" onclick="nextQ2()" style="padding:10px 24px;font-size:0.9rem;" id="nextBtn2">Next Question →</button>
+          <span style="align-self:center;color:var(--muted);font-size:0.85rem;" id="q2-count">Question 1 of 5</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ROBOT VISUAL -->
+  <div class="section reveal" style="text-align:center;">
+    <div class="robot-visual">🤖</div>
+    <h2 style="font-family:'Orbitron',monospace;font-size:1.5rem;margin-bottom:12px;">You've Almost Reached the <span style="color:var(--s2)">Future!</span></h2>
+    <p style="max-width:600px;margin:0 auto;color:var(--muted);">AI is not magic. It's not science fiction. It's math, data, and human creativity combined. And now — you understand it. That makes you part of the AI generation. 🚀</p>
+  </div>
+
+  <!-- SESSION 2 FINAL CHALLENGE -->
+  <div class="section reveal">
+    <div class="challenge-box">
+      <h2>🏆 YOUR FINAL HOMEWORK CHALLENGE!</h2>
+      <p style="color:var(--muted);margin-bottom:16px;font-size:0.9rem;">Share your unique answer next class — no two answers should be the same!</p>
+      <div class="challenge-q">
+        "Pick ANY field — sports, music, farming, cooking, medicine, art, teaching, or anything you love — and imagine you are working in that field in the year 2035. How will AI be your partner in that job? What will YOU do that AI cannot do? And what would make you the most valuable person in that field alongside AI?"
+      </div>
+      <p class="challenge-hint">💡 Think big! Think wild! Think YOU! There are millions of right answers — yours should sound like your dream. The crazier and more personal, the better! The student with the most creative answer gets a special mention! 🌟</p>
+    </div>
+  </div>
+
+</div>
+<!-- END SESSION 2 -->
+
+<footer style="text-align:center;padding:40px 24px;color:var(--muted);font-size:0.85rem;border-top:1px solid rgba(255,255,255,0.06);">
+  <div style="font-family:'Orbitron',monospace;font-size:1rem;color:var(--s1);margin-bottom:8px;">⚡ AI ADVENTURE</div>
+  <div>Gyan Shakti Residential School of Excellence · AI & Robotics Program</div>
+  <div style="margin-top:8px;color:rgba(255,255,255,0.3);">Made with 🤖 for curious minds of Class 6–10</div>
+</footer>
+
+<script>
+// FLOATING EMOJIS
+const emojis = ['🤖','💡','🧠','⚡','🚀','🎯','💻','🔬','🌐','🤯','✨','🏆'];
+const fe = document.getElementById('floatingEmojis');
+emojis.forEach((e,i)=>{
+  const el = document.createElement('div');
+  el.className='fe';el.textContent=e;
+  el.style.left=Math.random()*100+'%';
+  el.style.animationDelay=i*0.5+'s';
+  el.style.animationDuration=(5+Math.random()*5)+'s';
+  fe.appendChild(el);
+});
+
+// PROGRESS BAR
+window.addEventListener('scroll',()=>{
+  const h=document.documentElement.scrollHeight-window.innerHeight;
+  document.getElementById('progressBar').style.width=(window.scrollY/h*100)+'%';
+});
+
+// SCROLL REVEAL
+const observer=new IntersectionObserver(els=>{
+  els.forEach(el=>{if(el.isIntersecting)el.target.classList.add('visible');});
+},{threshold:0.1});
+document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+
+// SESSION SWITCH
+function switchSession(n){
+  document.querySelectorAll('.session').forEach(s=>s.classList.remove('active'));
+  document.getElementById('session'+n).classList.add('active');
+  document.getElementById('tab1').className='tab t1'+(n===1?' active':' inactive');
+  document.getElementById('tab2').className='tab t2'+(n===2?' active':' inactive');
+  setTimeout(()=>{
+    document.querySelector('.session-selector').scrollIntoView({behavior:'smooth'});
+  },100);
+}
+
+// QUIZ 1
+const q1data=[
+  {q:"Who is known as the 'Father of AI' who first asked 'Can Machines Think?'",opts:["Alan Turing","Bill Gates","Steve Jobs","Elon Musk"],ans:0,exp:"Alan Turing asked this in 1950 and invented the Turing Test! 🧠"},
+  {q:"The famous Dartmouth Conference in 1956 was organised by which scientist?",opts:["Marvin Minsky","John McCarthy","Geoffrey Hinton","Larry Page"],ans:1,exp:"John McCarthy organised it and first used the word 'Artificial Intelligence'! 🎓"},
+  {q:"What is the 'AI Winter' in AI history?",opts:["A cold AI computer","A period when AI research was abandoned due to lack of results","An AI that predicts winter","AI used in weather forecasting"],ans:1,exp:"The AI Winter (1973–1980s) was a dark period when funding stopped and many gave up on AI! ❄️"},
+  {q:"In 1997, which AI defeated the world chess champion Garry Kasparov?",opts:["Google AlphaGo","IBM Deep Blue","Microsoft Watson","MIT ELIZA"],ans:1,exp:"IBM Deep Blue's victory shocked the entire world! ♟️"},
+  {q:"The first ever chatbot that could hold basic conversations was created at MIT. What was it called?",opts:["Siri","ChatGPT","ELIZA","Alexa"],ans:2,exp:"ELIZA (1965) was AI's first chatbot — ChatGPT's great-great-grandmother! 💬"},
+];
+let q1i=0,q1score=0,q1answered=false;
+function loadQ1(){
+  if(q1i>=q1data.length){
+    document.getElementById('q1-text').textContent='🎉 Quiz Complete!';
+    document.getElementById('q1-opts').innerHTML='<div style="color:var(--s4);font-size:1.1rem;font-weight:700;padding:20px;text-align:center;">Final Score: '+q1score+'/'+q1data.length+' ⭐</div>';
+    document.getElementById('nextBtn1').textContent='Restart Quiz 🔄';
+    document.getElementById('nextBtn1').onclick=()=>{q1i=0;q1score=0;q1answered=false;document.getElementById('q1-result').className='quiz-result';loadQ1();document.getElementById('nextBtn1').onclick=nextQ1;};
+    document.getElementById('q1-count').textContent='';return;
+  }
+  const d=q1data[q1i];
+  q1answered=false;
+  document.getElementById('q1-text').textContent=(q1i+1)+'. '+d.q;
+  document.getElementById('q1-count').textContent='Question '+(q1i+1)+' of '+q1data.length;
+  document.getElementById('q1-result').className='quiz-result';
+  const opts=document.getElementById('q1-opts');
+  opts.innerHTML=d.opts.map((o,i)=>`<button class="quiz-opt" onclick="answerQ1(${i})">${['A','B','C','D'][i]}. ${o}</button>`).join('');
+}
+function answerQ1(i){
+  if(q1answered)return;
+  q1answered=true;
+  const d=q1data[q1i];
+  const btns=document.querySelectorAll('#q1-opts .quiz-opt');
+  btns.forEach((b,j)=>{b.classList.add(j===d.ans?'correct':i===j?'wrong':'');});
+  const res=document.getElementById('q1-result');
+  if(i===d.ans){q1score++;res.className='quiz-result show result-win';res.textContent='✅ Correct! '+d.exp;}
+  else{res.className='quiz-result show result-lose';res.textContent='❌ Oops! '+d.exp;}
+  document.getElementById('score1').textContent='Score: '+q1score+'/'+(q1i+1)+' ⭐';
+}
+function nextQ1(){if(q1answered||q1i===0&&!q1answered){q1i++;loadQ1();}}
+loadQ1();
+
+// QUIZ 2
+const q2data=[
+  {q:"ChatGPT reached 100 million users in just how many days?",opts:["60 days","1 year","5 days","6 months"],ans:0,exp:"ChatGPT hit 100 million users in 60 days — fastest ever in history! 🚀"},
+  {q:"Which AI by Google defeated the world's best GO player in 2016?",opts:["DeepMind","AlphaGo","Gemini","TensorFlow"],ans:1,exp:"AlphaGo's move was so brilliant, Lee Sedol called it 'a move only a god could make'! 🏓"},
+  {q:"What did AI help design in just 2 days during the COVID-19 pandemic?",opts:["A vaccine","A mask","A ventilator","A test kit"],ans:0,exp:"BioNTech used AI to design the vaccine structure in 48 hours — saving millions! 💊"},
+  {q:"Which robot vacuum cleaner was the first to enter millions of homes?",opts:["Atlas","Optimus","Roomba","Sophia"],ans:2,exp:"Roomba (2002) by iRobot — 40 million sold worldwide! Now it maps your whole house! 🤖"},
+  {q:"The AI portrait 'Edmond Belamy' sold at auction for approximately how much?",opts:["₹400","₹40,000","₹4 Lakh","₹4 Crore"],ans:3,exp:"$432,500 — about ₹4 crore! AI-generated art selling for crores shocked the world! 🎨"},
+];
+let q2i=0,q2score=0,q2answered=false;
+function loadQ2(){
+  if(q2i>=q2data.length){
+    document.getElementById('q2-text').textContent='🏆 You Are an AI Expert!';
+    document.getElementById('q2-opts').innerHTML='<div style="color:var(--s4);font-size:1.1rem;font-weight:700;padding:20px;text-align:center;">Final Score: '+q2score+'/'+q2data.length+' ⭐</div>';
+    document.getElementById('nextBtn2').textContent='Restart Quiz 🔄';
+    document.getElementById('nextBtn2').onclick=()=>{q2i=0;q2score=0;q2answered=false;document.getElementById('q2-result').className='quiz-result';loadQ2();document.getElementById('nextBtn2').onclick=nextQ2;};
+    document.getElementById('q2-count').textContent='';return;
+  }
+  const d=q2data[q2i];
+  q2answered=false;
+  document.getElementById('q2-text').textContent=(q2i+1)+'. '+d.q;
+  document.getElementById('q2-count').textContent='Question '+(q2i+1)+' of '+q2data.length;
+  document.getElementById('q2-result').className='quiz-result';
+  const opts=document.getElementById('q2-opts');
+  opts.innerHTML=d.opts.map((o,i)=>`<button class="quiz-opt" onclick="answerQ2(${i})">${['A','B','C','D'][i]}. ${o}</button>`).join('');
+}
+function answerQ2(i){
+  if(q2answered)return;
+  q2answered=true;
+  const d=q2data[q2i];
+  const btns=document.querySelectorAll('#q2-opts .quiz-opt');
+  btns.forEach((b,j)=>{b.classList.add(j===d.ans?'correct':i===j?'wrong':'');});
+  const res=document.getElementById('q2-result');
+  if(i===d.ans){q2score++;res.className='quiz-result show result-win';res.textContent='✅ Brilliant! '+d.exp;}
+  else{res.className='quiz-result show result-lose';res.textContent='❌ Not quite! '+d.exp;}
+  document.getElementById('score2').textContent='Score: '+q2score+'/'+(q2i+1)+' ⭐';
+}
+function nextQ2(){if(q2answered||q2i===0&&!q2answered){q2i++;loadQ2();}}
+loadQ2();
+</script>
+</body>
+</html>
