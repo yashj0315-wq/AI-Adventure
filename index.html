@@ -834,6 +834,15 @@ h1.hero-title span{background:linear-gradient(135deg,var(--s1),var(--s2));-webki
 </footer>
 
 <script>
+</footer>
+
+<script>
+// DELETE EVERYTHING BELOW THIS LINE 👇
+// (From: const emojis = ['🤖'...)
+// (All the way down to: loadQ2();)
+
+// PASTE ALL OF THE CODE BELOW INSTEAD 👇
+
 // FLOATING EMOJIS
 const emojis = ['🤖','💡','🧠','⚡','🚀','🎯','💻','🔬','🌐','🤯','✨','🏆'];
 const fe = document.getElementById('floatingEmojis');
@@ -883,7 +892,7 @@ function loadQ1(){
     document.getElementById('q1-text').textContent='🎉 Quiz Complete!';
     document.getElementById('q1-opts').innerHTML='<div style="color:var(--s4);font-size:1.1rem;font-weight:700;padding:20px;text-align:center;">Final Score: '+q1score+'/'+q1data.length+' ⭐</div>';
     document.getElementById('nextBtn1').textContent='Restart Quiz 🔄';
-    document.getElementById('nextBtn1').onclick=()=>{q1i=0;q1score=0;q1answered=false;document.getElementById('q1-result').className='quiz-result';loadQ1();document.getElementById('nextBtn1').onclick=nextQ1;};
+    document.getElementById('nextBtn1').onclick=()=>{q1i=0;q1score=0;q1answered=false;document.getElementById('score1').textContent='Score: 0/5 ⭐';document.getElementById('q1-result').className='quiz-result';loadQ1();document.getElementById('nextBtn1').onclick=nextQ1;};
     document.getElementById('q1-count').textContent='';return;
   }
   const d=q1data[q1i];
@@ -903,9 +912,9 @@ function answerQ1(i){
   const res=document.getElementById('q1-result');
   if(i===d.ans){q1score++;res.className='quiz-result show result-win';res.textContent='✅ Correct! '+d.exp;}
   else{res.className='quiz-result show result-lose';res.textContent='❌ Oops! '+d.exp;}
-  document.getElementById('score1').textContent='Score: '+q1score+'/'+(q1i+1)+' ⭐';
+  document.getElementById('score1').textContent='Score: '+q1score+'/'+q1data.length+' ⭐';
 }
-function nextQ1(){if(q1answered||q1i===0&&!q1answered){q1i++;loadQ1();}}
+function nextQ1(){if(q1answered){q1i++;loadQ1();}}
 loadQ1();
 
 // QUIZ 2
@@ -922,7 +931,7 @@ function loadQ2(){
     document.getElementById('q2-text').textContent='🏆 You Are an AI Expert!';
     document.getElementById('q2-opts').innerHTML='<div style="color:var(--s4);font-size:1.1rem;font-weight:700;padding:20px;text-align:center;">Final Score: '+q2score+'/'+q2data.length+' ⭐</div>';
     document.getElementById('nextBtn2').textContent='Restart Quiz 🔄';
-    document.getElementById('nextBtn2').onclick=()=>{q2i=0;q2score=0;q2answered=false;document.getElementById('q2-result').className='quiz-result';loadQ2();document.getElementById('nextBtn2').onclick=nextQ2;};
+    document.getElementById('nextBtn2').onclick=()=>{q2i=0;q2score=0;q2answered=false;document.getElementById('score2').textContent='Score: 0/5 ⭐';document.getElementById('q2-result').className='quiz-result';loadQ2();document.getElementById('nextBtn2').onclick=nextQ2;};
     document.getElementById('q2-count').textContent='';return;
   }
   const d=q2data[q2i];
@@ -942,10 +951,11 @@ function answerQ2(i){
   const res=document.getElementById('q2-result');
   if(i===d.ans){q2score++;res.className='quiz-result show result-win';res.textContent='✅ Brilliant! '+d.exp;}
   else{res.className='quiz-result show result-lose';res.textContent='❌ Not quite! '+d.exp;}
-  document.getElementById('score2').textContent='Score: '+q2score+'/'+(q2i+1)+' ⭐';
+  document.getElementById('score2').textContent='Score: '+q2score+'/'+q2data.length+' ⭐';
 }
-function nextQ2(){if(q2answered||q2i===0&&!q2answered){q2i++;loadQ2();}}
+function nextQ2(){if(q2answered){q2i++;loadQ2();}}
 loadQ2();
+
 </script>
 </body>
 </html>
