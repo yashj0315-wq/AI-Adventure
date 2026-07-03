@@ -66,7 +66,6 @@ h1.hero-title span{background:linear-gradient(135deg,var(--s1),var(--s2));-webki
 
 /* SECTION WRAPPER */
 .section{padding:60px 24px;max-width:1100px;margin:0 auto;}
-.section-badge覆盖{display:inline-block;padding:4px 16px;border-radius:20px;font-size:0.75rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;margin-bottom:12px;}
 .section-badge{display:inline-block;padding:4px 16px;border-radius:20px;font-size:0.75rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;margin-bottom:12px;}
 .badge-cyan{background:rgba(0,245,212,0.15);color:var(--s1);border:1px solid var(--s1);}
 .badge-pink{background:rgba(247,37,133,0.15);color:var(--s2);border:1px solid var(--s2);}
@@ -77,7 +76,7 @@ h1.hero-title span{background:linear-gradient(135deg,var(--s1),var(--s2));-webki
 .section p{color:#c8c8dd;line-height:1.8;font-size:1rem;margin-bottom:16px;}
 
 /* ADDED IMAGES */
-.edu-image-container {width:100%;max-width:700px;margin:24px auto;border-radius:16px;overflow:hidden;border:1px solid rgba(0,245,212,0.2);box-shadow:0 10px 30px rgba(0,0,0,0.5);background:#161630;}
+.edu-image-container {width:100%;max-width:700px;margin:24px auto;border-radius:16px;overflow:hidden;border:1px solid rgba(0,245,212,0.2);box-shadow:0 10px 30px rgba(0,0,0,0.5);background:#161630;padding:40px 20px;text-align:center;color:var(--muted);font-weight:600;}
 .edu-image {width:100%;height:auto;display:block;opacity:0.85;transition:opacity 0.3s;}
 .edu-image:hover {opacity:1;}
 
@@ -183,9 +182,6 @@ h1.hero-title span{background:linear-gradient(135deg,var(--s1),var(--s2));-webki
 .reveal{opacity:0;transform:translateY(40px);transition:all 0.7s ease;}
 .reveal.visible{opacity:1;transform:translateY(0);}
 
-/* PROGRESS BAR */
-.progress-bar{position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,var(--s1),var(--s2));z-index:200;transition:width 0.1s;}
-
 /* RESPONSIVE */
 @media(max-width:600px){
   .quiz-options{grid-template-columns:1fr;}
@@ -209,6 +205,7 @@ h1.hero-title span{background:linear-gradient(135deg,var(--s1),var(--s2));-webki
   </div>
 </nav>
 
+<!-- HERO -->
 <section id="hero">
   <div class="stars"></div>
   <div class="floating-emojis" id="floatingEmojis"></div>
@@ -217,13 +214,14 @@ h1.hero-title span{background:linear-gradient(135deg,var(--s1),var(--s2));-webki
     <h1 class="hero-title">The <span>AI Adventure</span><br>How Machines Learned to Think</h1>
     <p class="hero-sub">From a scientist's wild dream in 1950 to robots doing surgery in 2024 — buckle up for the most mind-blowing story ever told! 🚀</p>
     <div class="hero-btns">
-      <a class="btn btn-primary" onclick="switchSession(1);document.getElementById('session1').scrollIntoView({behavior:'smooth'})">Start Session 1 🎯</a>
-      <a class="btn btn-secondary" onclick="switchSession(2);document.getElementById('session2').scrollIntoView({behavior:'smooth'})">Jump to Session 2 ⚡</a>
+      <button class="btn btn-primary" onclick="switchSession(1)">Start Session 1 🎯</button>
+      <button class="btn btn-secondary" onclick="switchSession(2)">Jump to Session 2 ⚡</button>
     </div>
   </div>
   <div class="scroll-hint">▼ Scroll to explore</div>
 </section>
 
+<!-- SESSION SELECTOR -->
 <div class="session-selector">
   <h2>Choose Your Adventure</h2>
   <div class="tabs">
@@ -232,8 +230,10 @@ h1.hero-title span{background:linear-gradient(135deg,var(--s1),var(--s2));-webki
   </div>
 </div>
 
+<!-- =================== SESSION 1 =================== -->
 <div class="session active" id="session1">
 
+  <!-- INTRO -->
   <div class="section reveal">
     <div class="section-badge badge-cyan">Session 1 of 2</div>
     <h2>🌱 The Birth of AI — How It All Started</h2>
@@ -244,8 +244,10 @@ h1.hero-title span{background:linear-gradient(135deg,var(--s1),var(--s2));-webki
       <p><strong>"CAN MACHINES THINK?"</strong> — Alan Turing, a British mathematician, asked this and the whole world went crazy. This one question started the entire field of Artificial Intelligence!</p>
     </div>
 
+    <!-- ADDED IMAGE: ALAN TURING / TURING TEST CONCEPT -->
     <div class="edu-image-container">
-      
+      🖼️ [DIAGRAM: THE TURING TEST]<br>
+      <span style="font-size:0.85rem; color:var(--muted); display:block; margin-top:10px;">Shows a human judge typing messages to an unseen human and an unseen computer. If the judge can't tell which is which, the machine passes the test!</span>
     </div>
 
     <div class="stat-strip">
@@ -268,6 +270,7 @@ h1.hero-title span{background:linear-gradient(135deg,var(--s1),var(--s2));-webki
     </div>
   </div>
 
+  <!-- FATHER OF AI -->
   <div class="section reveal">
     <div class="section-badge badge-pink">👑 The Legends</div>
     <h2>Meet the Founders of AI — Real Life Superheroes!</h2>
@@ -304,13 +307,16 @@ h1.hero-title span{background:linear-gradient(135deg,var(--s1),var(--s2));-webki
     </div>
   </div>
 
+  <!-- WHAT IS AI -->
   <div class="section reveal">
     <div class="section-badge badge-yellow">🤔 What IS AI?</div>
     <h2>AI Explained — Super Simply!</h2>
     <p>You know how <span class="hl-yellow">you</span> learn things? You see a dog once, twice, a hundred times — and eventually your brain goes <em>"I know what a dog looks like!"</em> AI does the SAME thing — but with code!</p>
 
+    <!-- ADDED IMAGE: HOW MACHINE LEARNING WORKS (PATTERNS) -->
     <div class="edu-image-container">
-      
+      #️⃣ [INFOGRAPHIC: HOW COMPUTERS SPOT PATTERNS]<br>
+      <span style="font-size:0.85rem; color:var(--muted); display:block; margin-top:10px;">Shows a simple sequence: Millions of Dog Photos ➔ AI Software Extracts Patterns (Ears, Nose, Fur) ➔ AI accurately tags new photo as "Dog"!</span>
     </div>
 
     <div class="fact-grid">
@@ -342,6 +348,7 @@ h1.hero-title span{background:linear-gradient(135deg,var(--s1),var(--s2));-webki
     </div>
   </div>
 
+  <!-- TIMELINE S1 -->
   <div class="section reveal">
     <div class="section-badge badge-purple">📅 The Timeline</div>
     <h2>From Dream to Reality — The Journey of AI (1950–2000)</h2>
@@ -413,6 +420,7 @@ h1.hero-title span{background:linear-gradient(135deg,var(--s1),var(--s2));-webki
     </div>
   </div>
 
+  <!-- AI IN EARLY COMPUTERS -->
   <div class="section reveal">
     <div class="section-badge badge-green">💾 Early Use</div>
     <h2>How AI First Came Into Our Computers</h2>
@@ -477,6 +485,7 @@ h1.hero-title span{background:linear-gradient(135deg,var(--s1),var(--s2));-webki
     </div>
   </div>
 
+  <!-- QUIZ S1 -->
   <div class="section reveal">
     <div class="section-badge badge-cyan">🎮 Quiz Time!</div>
     <h2>Let's Test What You Learned!</h2>
@@ -496,6 +505,7 @@ h1.hero-title span{background:linear-gradient(135deg,var(--s1),var(--s2));-webki
     </div>
   </div>
 
+  <!-- SESSION 1 FINAL CHALLENGE -->
   <div class="section reveal">
     <div class="challenge-box">
       <h2>🏆 YOUR HOMEWORK CHALLENGE!</h2>
@@ -508,8 +518,13 @@ h1.hero-title span{background:linear-gradient(135deg,var(--s1),var(--s2));-webki
   </div>
 
 </div>
+<!-- END SESSION 1 -->
+
+
+<!-- =================== SESSION 2 =================== -->
 <div class="session" id="session2">
 
+  <!-- INTRO S2 -->
   <div class="section reveal">
     <div class="section-badge badge-pink">Session 2 of 2</div>
     <h2>🚀 AI Takes Over — The 21st Century Revolution!</h2>
@@ -520,8 +535,10 @@ h1.hero-title span{background:linear-gradient(135deg,var(--s1),var(--s2));-webki
       <p>By the year 2000, scientists had figured out the <em>basics</em> of AI. But AI was still slow, dumb, and limited. Then something changed. Three things happened at the same time: <strong>more data</strong> (the internet exploded), <strong>better computers</strong> (GPUs got powerful), and <strong>smarter algorithms</strong>. These three things together created the AI revolution we're living in RIGHT NOW. 💥</p>
     </div>
 
+    <!-- ADDED IMAGE: ARTIFICIAL NEURAL NETWORK CORE STRUCTURE -->
     <div class="edu-image-container">
-      
+      🧠 [DIAGRAM: ARTIFICIAL NEURAL NETWORK]<br>
+      <span style="font-size:0.85rem; color:var(--muted); display:block; margin-top:10px;">Inspired by the human brain! Explains how data points pass through multiple layers of calculations (Hidden Layers) to produce smart outputs.</span>
     </div>
 
     <div class="stat-strip">
@@ -544,6 +561,7 @@ h1.hero-title span{background:linear-gradient(135deg,var(--s1),var(--s2));-webki
     </div>
   </div>
 
+  <!-- TIMELINE S2 -->
   <div class="section reveal">
     <div class="section-badge badge-purple">📅 2000–2024</div>
     <h2>The Modern AI Timeline — When Things Got CRAZY!</h2>
@@ -632,6 +650,7 @@ h1.hero-title span{background:linear-gradient(135deg,var(--s1),var(--s2));-webki
     </div>
   </div>
 
+  <!-- AI IN DIFFERENT SECTORS -->
   <div class="section reveal">
     <div class="section-badge badge-yellow">🌍 AI Everywhere</div>
     <h2>AI in Every Corner of the World — The Milestones!</h2>
@@ -752,6 +771,7 @@ h1.hero-title span{background:linear-gradient(135deg,var(--s1),var(--s2));-webki
     </div>
   </div>
 
+  <!-- HOW WILL THEY USE IT -->
   <div class="section reveal">
     <div class="section-badge badge-cyan">🎯 YOUR Future</div>
     <h2>How YOU Will Use AI — Your AI Superpowers! ⚡</h2>
@@ -786,6 +806,7 @@ h1.hero-title span{background:linear-gradient(135deg,var(--s1),var(--s2));-webki
     </div>
   </div>
 
+  <!-- QUIZ S2 -->
   <div class="section reveal">
     <div class="section-badge badge-pink">🎮 Quiz Time!</div>
     <h2>Session 2 — Are You an AI Expert?</h2>
@@ -803,12 +824,14 @@ h1.hero-title span{background:linear-gradient(135deg,var(--s1),var(--s2));-webki
     </div>
   </div>
 
+  <!-- ROBOT VISUAL -->
   <div class="section reveal" style="text-align:center;">
     <div class="robot-visual">🤖</div>
     <h2 style="font-family:'Orbitron',monospace;font-size:1.5rem;margin-bottom:12px;">You've Almost Reached the <span style="color:var(--s2)">Future!</span></h2>
     <p style="max-width:600px;margin:0 auto;color:var(--muted);">AI is not magic. It's not science fiction. It's math, data, and human creativity combined. And now — you understand it. That makes you part of the AI generation. 🚀</p>
   </div>
 
+  <!-- SESSION 2 FINAL CHALLENGE -->
   <div class="section reveal">
     <div class="challenge-box">
       <h2>🏆 YOUR FINAL HOMEWORK CHALLENGE!</h2>
@@ -821,6 +844,8 @@ h1.hero-title span{background:linear-gradient(135deg,var(--s1),var(--s2));-webki
   </div>
 
 </div>
+<!-- END SESSION 2 -->
+
 <footer style="text-align:center;padding:40px 24px;color:var(--muted);font-size:0.85rem;border-top:1px solid rgba(255,255,255,0.06);">
   <div style="font-family:'Orbitron',monospace;font-size:1rem;color:var(--s1);margin-bottom:8px;">⚡ AI ADVENTURE</div>
   <div>GGJPS · AI & Robotics Program</div>
@@ -846,24 +871,48 @@ window.addEventListener('scroll',()=>{
   document.getElementById('progressBar').style.width=(window.scrollY/h*100)+'%';
 });
 
-// SCROLL REVEAL
+// SCROLL REVEAL ENGINE
 const observer=new IntersectionObserver(els=>{
   els.forEach(el=>{if(el.isIntersecting)el.target.classList.add('visible');});
 },{threshold:0.1});
 document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
 
-// SESSION SWITCH
-function switchSession(n){
-  document.querySelectorAll('.session').forEach(s=>s.classList.remove('active'));
-  document.getElementById('session'+n).classList.add('active');
-  document.getElementById('tab1').className='tab t1'+(n===1?' active':' inactive');
-  document.getElementById('tab2').className='tab t2'+(n===2?' active':' inactive');
-  setTimeout(()=>{
-    document.querySelector('.session-selector').scrollIntoView({behavior:'smooth'});
-  },100);
+// REVEAL MANIFEST FOR HIDDEN SESSIONS
+function forceRevealSessionContent(sessionNum) {
+  const targetSession = document.getElementById('session' + sessionNum);
+  if(targetSession) {
+    targetSession.querySelectorAll('.reveal').forEach(el => {
+      el.classList.add('visible');
+    });
+  }
 }
 
-// QUIZ 1
+// FIXED INTERACTIVE SESSION SWITCH
+function switchSession(n){
+  // Handle Content Views
+  document.querySelectorAll('.session').forEach(s=>s.style.display = 'none');
+  const activeSession = document.getElementById('session'+n);
+  if(activeSession) {
+    activeSession.style.display = 'block';
+  }
+  
+  // Make sure content visibility states load cleanly instantly
+  forceRevealSessionContent(n);
+
+  // Toggle Tab Indicator CSS States cleanly
+  document.getElementById('tab1').className='tab t1'+(n===1?' active':' inactive');
+  document.getElementById('tab2').className='tab t2'+(n===2?' active':' inactive');
+  
+  // Clean single navigation scroll action down to target layout header
+  setTimeout(()=>{
+    document.querySelector('.session-selector').scrollIntoView({behavior:'smooth'});
+  },50);
+}
+
+// Initialize reveal tracking for default Session 1 elements
+forceRevealSessionContent(1);
+
+// QUIZ 1 SYSTEM
 const q1data=[
   {q:"Who is known as the 'Father of AI' who first asked 'Can Machines Think?'",opts:["Alan Turing","Bill Gates","Steve Jobs","Elon Musk"],ans:0,exp:"Alan Turing asked this in 1950 and invented the Turing Test! 🧠"},
   {q:"The famous Dartmouth Conference in 1956 was organised by which scientist?",opts:["Marvin Minsky","John McCarthy","Geoffrey Hinton","Larry Page"],ans:1,exp:"John McCarthy organised it and first used the word 'Artificial Intelligence'! 🎓"},
@@ -902,7 +951,7 @@ function answerQ1(i){
 function nextQ1(){if(q1answered){q1i++;loadQ1();}}
 loadQ1();
 
-// QUIZ 2
+// QUIZ 2 SYSTEM
 const q2data=[
   {q:"ChatGPT reached 100 million users in just how many days?",opts:["60 days","1 year","5 days","6 months"],ans:0,exp:"ChatGPT hit 100 million users in 60 days — fastest ever in history! 🚀"},
   {q:"Which AI by Google defeated the world's best GO player in 2016?",opts:["DeepMind","AlphaGo","Gemini","TensorFlow"],ans:1,exp:"AlphaGo's move was so brilliant, Lee Sedol called it 'a move only a god could make'! 🏓"},
