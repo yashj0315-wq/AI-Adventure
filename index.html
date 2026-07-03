@@ -66,6 +66,7 @@ h1.hero-title span{background:linear-gradient(135deg,var(--s1),var(--s2));-webki
 
 /* SECTION WRAPPER */
 .section{padding:60px 24px;max-width:1100px;margin:0 auto;}
+.section-badge覆盖{display:inline-block;padding:4px 16px;border-radius:20px;font-size:0.75rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;margin-bottom:12px;}
 .section-badge{display:inline-block;padding:4px 16px;border-radius:20px;font-size:0.75rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;margin-bottom:12px;}
 .badge-cyan{background:rgba(0,245,212,0.15);color:var(--s1);border:1px solid var(--s1);}
 .badge-pink{background:rgba(247,37,133,0.15);color:var(--s2);border:1px solid var(--s2);}
@@ -171,8 +172,7 @@ h1.hero-title span{background:linear-gradient(135deg,var(--s1),var(--s2));-webki
 
 /* ROBOT VISUAL */
 .robot-visual{text-align:center;padding:40px;font-size:5rem;animation:robotBob 2s ease-in-out infinite;}
-@keyframes robotBob{0%,100%{transform:translateY(0);}50%{transform:translateY(-15px);}
-}
+@keyframes robotBob{0%,100%{transform:translateY(0);}50%{transform:translateY(-15px);}}
 
 /* SCROLL REVEAL */
 .reveal{opacity:0;transform:translateY(40px);transition:all 0.7s ease;}
@@ -204,7 +204,6 @@ h1.hero-title span{background:linear-gradient(135deg,var(--s1),var(--s2));-webki
   </div>
 </nav>
 
-<!-- HERO -->
 <section id="hero">
   <div class="stars"></div>
   <div class="floating-emojis" id="floatingEmojis"></div>
@@ -220,7 +219,6 @@ h1.hero-title span{background:linear-gradient(135deg,var(--s1),var(--s2));-webki
   <div class="scroll-hint">▼ Scroll to explore</div>
 </section>
 
-<!-- SESSION SELECTOR -->
 <div class="session-selector">
   <h2>Choose Your Adventure</h2>
   <div class="tabs">
@@ -229,10 +227,8 @@ h1.hero-title span{background:linear-gradient(135deg,var(--s1),var(--s2));-webki
   </div>
 </div>
 
-<!-- ═══════════════════ SESSION 1 ═══════════════════ -->
 <div class="session active" id="session1">
 
-  <!-- INTRO -->
   <div class="section reveal">
     <div class="section-badge badge-cyan">Session 1 of 2</div>
     <h2>🌱 The Birth of AI — How It All Started</h2>
@@ -263,7 +259,6 @@ h1.hero-title span{background:linear-gradient(135deg,var(--s1),var(--s2));-webki
     </div>
   </div>
 
-  <!-- FATHER OF AI -->
   <div class="section reveal">
     <div class="section-badge badge-pink">👑 The Legends</div>
     <h2>Meet the Founders of AI — Real Life Superheroes!</h2>
@@ -300,7 +295,6 @@ h1.hero-title span{background:linear-gradient(135deg,var(--s1),var(--s2));-webki
     </div>
   </div>
 
-  <!-- WHAT IS AI -->
   <div class="section reveal">
     <div class="section-badge badge-yellow">🤔 What IS AI?</div>
     <h2>AI Explained — Super Simply!</h2>
@@ -335,7 +329,6 @@ h1.hero-title span{background:linear-gradient(135deg,var(--s1),var(--s2));-webki
     </div>
   </div>
 
-  <!-- TIMELINE S1 -->
   <div class="section reveal">
     <div class="section-badge badge-purple">📅 The Timeline</div>
     <h2>From Dream to Reality — The Journey of AI (1950–2000)</h2>
@@ -407,7 +400,6 @@ h1.hero-title span{background:linear-gradient(135deg,var(--s1),var(--s2));-webki
     </div>
   </div>
 
-  <!-- AI IN EARLY COMPUTERS -->
   <div class="section reveal">
     <div class="section-badge badge-green">💾 Early Use</div>
     <h2>How AI First Came Into Our Computers</h2>
@@ -472,7 +464,6 @@ h1.hero-title span{background:linear-gradient(135deg,var(--s1),var(--s2));-webki
     </div>
   </div>
 
-  <!-- QUIZ S1 -->
   <div class="section reveal">
     <div class="section-badge badge-cyan">🎮 Quiz Time!</div>
     <h2>Let's Test What You Learned!</h2>
@@ -492,7 +483,6 @@ h1.hero-title span{background:linear-gradient(135deg,var(--s1),var(--s2));-webki
     </div>
   </div>
 
-  <!-- SESSION 1 FINAL CHALLENGE -->
   <div class="section reveal">
     <div class="challenge-box">
       <h2>🏆 YOUR HOMEWORK CHALLENGE!</h2>
@@ -505,13 +495,8 @@ h1.hero-title span{background:linear-gradient(135deg,var(--s1),var(--s2));-webki
   </div>
 
 </div>
-<!-- END SESSION 1 -->
-
-
-<!-- ═══════════════════ SESSION 2 ═══════════════════ -->
 <div class="session" id="session2">
 
-  <!-- INTRO S2 -->
   <div class="section reveal">
     <div class="section-badge badge-pink">Session 2 of 2</div>
     <h2>🚀 AI Takes Over — The 21st Century Revolution!</h2>
@@ -542,7 +527,6 @@ h1.hero-title span{background:linear-gradient(135deg,var(--s1),var(--s2));-webki
     </div>
   </div>
 
-  <!-- TIMELINE S2 -->
   <div class="section reveal">
     <div class="section-badge badge-purple">📅 2000–2024</div>
     <h2>The Modern AI Timeline — When Things Got CRAZY!</h2>
@@ -631,7 +615,6 @@ h1.hero-title span{background:linear-gradient(135deg,var(--s1),var(--s2));-webki
     </div>
   </div>
 
-  <!-- AI IN DIFFERENT SECTORS -->
   <div class="section reveal">
     <div class="section-badge badge-yellow">🌍 AI Everywhere</div>
     <h2>AI in Every Corner of the World — The Milestones!</h2>
@@ -704,7 +687,7 @@ h1.hero-title span{background:linear-gradient(135deg,var(--s1),var(--s2));-webki
           🛒 <strong>Amazon's warehouse robots</strong> — over 750,000 robots pick, pack, and send your orders. They work 24/7 without breaks!<br><br>
           📞 <strong>AI customer service</strong> — most company chat boxes are AI. It handles millions of complaints at once!<br><br>
           💰 <strong>AI stock trading</strong> — 70% of Wall Street stock trades are done by AI in milliseconds.</p>
-          <span class="mc-tag" style="background:rgba(114,9,183,0.15);color:#b85dff);">⚡ Running the Economy</span>
+          <span class="mc-tag" style="background:rgba(114,9,183,0.15);color:#b85dff;">⚡ Running the Economy</span>
         </div>
       </div>
 
@@ -752,7 +735,6 @@ h1.hero-title span{background:linear-gradient(135deg,var(--s1),var(--s2));-webki
     </div>
   </div>
 
-  <!-- HOW WILL THEY USE IT -->
   <div class="section reveal">
     <div class="section-badge badge-cyan">🎯 YOUR Future</div>
     <h2>How YOU Will Use AI — Your AI Superpowers! ⚡</h2>
@@ -787,7 +769,6 @@ h1.hero-title span{background:linear-gradient(135deg,var(--s1),var(--s2));-webki
     </div>
   </div>
 
-  <!-- QUIZ S2 -->
   <div class="section reveal">
     <div class="section-badge badge-pink">🎮 Quiz Time!</div>
     <h2>Session 2 — Are You an AI Expert?</h2>
@@ -805,14 +786,12 @@ h1.hero-title span{background:linear-gradient(135deg,var(--s1),var(--s2));-webki
     </div>
   </div>
 
-  <!-- ROBOT VISUAL -->
   <div class="section reveal" style="text-align:center;">
     <div class="robot-visual">🤖</div>
     <h2 style="font-family:'Orbitron',monospace;font-size:1.5rem;margin-bottom:12px;">You've Almost Reached the <span style="color:var(--s2)">Future!</span></h2>
     <p style="max-width:600px;margin:0 auto;color:var(--muted);">AI is not magic. It's not science fiction. It's math, data, and human creativity combined. And now — you understand it. That makes you part of the AI generation. 🚀</p>
   </div>
 
-  <!-- SESSION 2 FINAL CHALLENGE -->
   <div class="section reveal">
     <div class="challenge-box">
       <h2>🏆 YOUR FINAL HOMEWORK CHALLENGE!</h2>
@@ -825,8 +804,6 @@ h1.hero-title span{background:linear-gradient(135deg,var(--s1),var(--s2));-webki
   </div>
 
 </div>
-<!-- END SESSION 2 -->
-
 <footer style="text-align:center;padding:40px 24px;color:var(--muted);font-size:0.85rem;border-top:1px solid rgba(255,255,255,0.06);">
   <div style="font-family:'Orbitron',monospace;font-size:1rem;color:var(--s1);margin-bottom:8px;">⚡ AI ADVENTURE</div>
   <div>GGJPS · AI & Robotics Program</div>
@@ -834,15 +811,6 @@ h1.hero-title span{background:linear-gradient(135deg,var(--s1),var(--s2));-webki
 </footer>
 
 <script>
-</footer>
-
-<script>
-// DELETE EVERYTHING BELOW THIS LINE 👇
-// (From: const emojis = ['🤖'...)
-// (All the way down to: loadQ2();)
-
-// PASTE ALL OF THE CODE BELOW INSTEAD 👇
-
 // FLOATING EMOJIS
 const emojis = ['🤖','💡','🧠','⚡','🚀','🎯','💻','🔬','🌐','🤯','✨','🏆'];
 const fe = document.getElementById('floatingEmojis');
@@ -955,7 +923,6 @@ function answerQ2(i){
 }
 function nextQ2(){if(q2answered){q2i++;loadQ2();}}
 loadQ2();
-
 </script>
 </body>
 </html>
